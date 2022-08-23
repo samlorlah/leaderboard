@@ -16,7 +16,7 @@ submitBtn.addEventListener('click', async () => {
     score: score.value,
   };
 
-  const url = data.baseUrl + 'games/' + data.gameId + '/scores';
+  const url = `${data.baseUrl}games/${data.gameId}/scores`;
 
   await fetch(url, {
     method: 'POST',

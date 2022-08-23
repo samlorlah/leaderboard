@@ -11,7 +11,7 @@ class Data {
   async setgameId() {
     if (!this.gameId) {
       const gameName = { name: 'SamlorlahGame' };
-      const url = this.baseUrl + 'games';
+      const url = `${this.baseUrl}games`;
       await fetch(url, {
         method: 'POST',
         headers: {
@@ -29,7 +29,7 @@ class Data {
 
   async displayData() {
     tableBody.innerHTML = '';
-    const url = this.baseUrl + 'games/' + this.gameId + '/scores';;
+    const url = `${this.baseUrl}games/${this.gameId}/scores`;
     await fetch(url, {
       method: 'GET',
     })
