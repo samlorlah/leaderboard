@@ -2,32 +2,31 @@ const tableBody = document.querySelector('.score_data');
 
 const scoreData = [
   {
-    name: "Name",
-    score: 72
+    name: 'Name',
+    score: 72,
   },
   {
-    name: "Name",
-    score: 71
+    name: 'Name',
+    score: 71,
   },
   {
-    name: "Name",
-    score: 72
+    name: 'Name',
+    score: 72,
   },
   {
-    name: "Name",
-    score: 70
+    name: 'Name',
+    score: 70,
   },
-]
+];
 
 class Data {
-  constructor () {
+  constructor() {
     this.scores = scoreData;
   }
 
   displayData() {
-    console.log(this.scores);
     tableBody.innerHTML = '';
-    this.scores.forEach(data => {
+    this.scores.forEach((data) => {
       tableBody.innerHTML += `
         <tr>
           <td>${data.name}</td>
