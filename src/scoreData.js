@@ -5,14 +5,14 @@ class Data {
     this.gameId = localStorage.getItem('gameId')
       ? localStorage.getItem('gameId')
       : '';
-    this.baseUrl =
-      'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
+    this.baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
   }
 
   async setgameId() {
     if (!this.gameId) {
       const gameName = { name: 'SamlorlahGame' };
-      await fetch(this.baseUrl + 'games', {
+      const url = this.baseUrl + 'games';
+      await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,7 +29,8 @@ class Data {
 
   async displayData() {
     tableBody.innerHTML = '';
-    await fetch(this.baseUrl + 'games/' + this.gameId + '/scores', {
+    const url = this.baseUrl + 'games/' + this.gameId + '/scores';;
+    await fetch(url, {
       method: 'GET',
     })
       .then((response) => response.json())
