@@ -1,35 +1,45 @@
 const tableBody = document.querySelector('.score_data');
-
-const scoreData = [
-  {
-    name: 'Name',
-    score: 72,
-  },
-  {
-    name: 'Name',
-    score: 71,
-  },
-  {
-    name: 'Name',
-    score: 72,
-  },
-  {
-    name: 'Name',
-    score: 70,
-  },
-];
-
 class Data {
   constructor() {
-    this.scores = scoreData;
+    this.scores = [];
+    this.gameId = localStorage.getItem('gameId')
+      ? localStorage.getItem('gameId')
+      : '';
+    this.baseUrl =
+      'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
   }
 
-  displayData() {
+  async setgameId() {
+    if (!this.gameId) {
+      const gameName = { name: 'SamlorlahGame' };
+      await fetch(this.baseUrl + 'games', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(gameName),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const gameCode = data.result.split('ID: ')[1].split(' ')[0];
+          localStorage.setItem('gameId', gameCode);
+        });
+    }
+  }
+
+  async displayData() {
     tableBody.innerHTML = '';
+    await fetch(this.baseUrl + 'games/' + this.gameId + '/scores', {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.scores = data.result;
+      });
     this.scores.forEach((data) => {
       tableBody.innerHTML += `
         <tr>
-          <td>${data.name}</td>
+          <td>${data.user}</td>
           <td>${data.score}</td>
         </tr>
       `;
