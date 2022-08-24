@@ -1,35 +1,25 @@
 const tableBody = document.querySelector('.score_data');
-
-const scoreData = [
-  {
-    name: 'Name',
-    score: 72,
-  },
-  {
-    name: 'Name',
-    score: 71,
-  },
-  {
-    name: 'Name',
-    score: 72,
-  },
-  {
-    name: 'Name',
-    score: 70,
-  },
-];
-
 class Data {
   constructor() {
-    this.scores = scoreData;
+    this.scores = [];
+    this.gameId = 'nllsFxXRaSMyHqrZt0w1';
+    this.baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
   }
 
-  displayData() {
+  async displayData() {
     tableBody.innerHTML = '';
+    const url = `${this.baseUrl}games/${this.gameId}/scores`;
+    await fetch(url, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        this.scores = data.result;
+      });
     this.scores.forEach((data) => {
       tableBody.innerHTML += `
         <tr>
-          <td>${data.name}</td>
+          <td>${data.user}</td>
           <td>${data.score}</td>
         </tr>
       `;
