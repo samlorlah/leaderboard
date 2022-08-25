@@ -14,7 +14,8 @@ h2 {
   font-weight: 900;
 }
 
-.score_list_section, .add_score_section {
+.score_list_section,
+.add_score_section {
   background-color: rgba(255, 255, 255, 0.4);
   padding: 100px 50px;
   border-radius: 30px;
