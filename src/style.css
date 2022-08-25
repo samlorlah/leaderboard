@@ -1,3 +1,38 @@
+body {
+  min-height: 100vh;
+  background: linear-gradient(#e66465, #9198e5);
+}
+
 h1 {
-  padding: 20px 0;
+  color: #fff;
+  text-align: center;
+  padding: 30px 0 50px;
+}
+
+h2 {
+  color: rgb(14, 36, 226);
+  font-weight: 900;
+}
+
+.score_list_section, .add_score_section {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 100px 50px;
+  border-radius: 30px;
+}
+
+.score_list_header {
+  padding-bottom: 30px;
+}
+
+button {
+  border: none;
+  background-color: rgb(14, 36, 226);
+  color: #fff;
+  padding: 5px 20px;
+  border-radius: 5px;
+}
+
+.submit_btn:hover {
+  padding: 5px 25px;
+  background-color: #000;
 }
